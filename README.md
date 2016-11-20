@@ -21,4 +21,17 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
       [applications: [:expr]]
     end
     ```
-    
+
+## Usage
+
+```
+Expr.evaluate(expression, variables)
+```
+
+Parses and evaluates the provided expression. The variables can be supplied as a map in the `variables` parameter.
+
+eg.
+```
+iex> Expr.evaluate("a + 2 in (3, 1)", %{a: 1})
+iex> true
+```
