@@ -5,19 +5,12 @@ defmodule Expr.Mixfile do
     [app: :expr,
      version: "0.1.0",
      elixir: "~> 1.3",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     description: description(),
-     package: package(),     
-     deps: deps()]
+     description: description,
+     package: package]
   end
 
   def application do
     [applications: [:logger]]
-  end
-
-  defp deps do
-    []
   end
 
   defp description do
