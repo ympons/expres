@@ -6,11 +6,16 @@ defmodule Expr.Mixfile do
      version: "0.1.0",
      elixir: "~> 1.3",
      description: description,
-     package: package]
+     package: package,
+     deps: deps]
   end
 
   def application do
     [applications: [:logger]]
+  end
+
+  defp deps do
+    [{:ex_doc, ">= 0.0.0", only: :dev}]
   end
 
   defp description do
