@@ -2,7 +2,7 @@ defmodule ExprTest do
   use ExUnit.Case
   doctest Expr
 
-  test "tokenize a expression" do
+  test "tokenize an expression" do
     str = "a = 22"
     exp = [{:var, 1, :a}, {:comp_op, 1, :=}, {:int, 1, 22}] 
     assert exp == Expr.tokenize(str)
@@ -14,13 +14,13 @@ defmodule ExprTest do
     assert exp == Expr.tokenize(str)
   end
 
-  test "tokenize a expression with float" do
+  test "tokenize an expression with float" do
     str = "a = 0.5"
     exp = [{:var, 1, :a}, {:comp_op, 1, :=}, {:float, 1, 0.5}] 
     assert exp == Expr.tokenize(str)
   end
 
-  test "tokenize a expression with module operator" do
+  test "tokenize an expression with module operator" do
     str = "a mod 1 = 22"
     exp = [
       {:var, 1, :a},
@@ -40,7 +40,7 @@ defmodule ExprTest do
     assert value
   end
 
-  test "parse a expression" do
+  test "parse an expression" do
     str = "a = 22"
     exp = {:binary_expr, {:comp_op, :=}, 
             {:var, :a}, 
@@ -60,7 +60,7 @@ defmodule ExprTest do
     assert exp == Expr.parse(str)
   end
 
-  test "parse expression with in_op and sum" do
+  test "parse an expression with in_op and sum" do
     str = "a + 1 in (3, 1, 2)"
     exp = {:binary_expr, :in_op, 
             {:binary_expr, {:add_op, :+}, {:var, :a}, {:int, 1}}, [3, 1, 2]}
@@ -72,12 +72,12 @@ defmodule ExprTest do
     assert str |> Expr.evaluate(%{a: 2}) 
   end
 
-  test "evaluate expression with in_op and sum" do
+  test "evaluate an expression with in_op and sum" do
     str = "a + 2 in (3, 1)"
     assert str |> Expr.evaluate(%{a: 1})
   end
 
-  test "evaluate expression with not_in_op and sum" do
+  test "evaluate an expression with not_in_op and sum" do
     str = "10 + 2 not in (3, 1)"
     assert str |> Expr.evaluate
   end
