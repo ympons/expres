@@ -19,7 +19,7 @@ defmodule Expres do
       true  -> false
       false -> 
         try do 
-          tokens |> parse |> eval(props) 
+          tokens |> parse |> eval(props)
         rescue 
            _ -> false
         end
@@ -57,6 +57,7 @@ defmodule Expres do
   defp eval({:binary_expr, {:comp_op, op}, p1, p2}, props) do
     case op do
       :=  -> eval(p1, props) == eval(p2, props)
+      :!= -> eval(p1, props) != eval(p2, props)
       :>  -> eval(p1, props) >  eval(p2, props)
       :>= -> eval(p1, props) >= eval(p2, props)
       :<  -> eval(p1, props) <  eval(p2, props)
@@ -65,11 +66,11 @@ defmodule Expres do
   end
 
   defp eval({:binary_expr, :in_op, p1, list}, props) do
-    Enum.member?(list, eval(p1, props))    
+    Enum.member?(list, eval(p1, props))
   end
 
   defp eval({:binary_expr, :not_in_op, p1, list}, props) do
-    !Enum.member?(list, eval(p1, props))    
+    !Enum.member?(list, eval(p1, props))
   end
 
   defp eval({:binary_expr, :and_op, p1, p2}, props) do

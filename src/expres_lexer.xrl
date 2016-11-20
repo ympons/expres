@@ -3,7 +3,7 @@ Definitions.
 VAR   = ([A-Za-z_][0-9a-zA-Z_]*)
 INT   = [0-9]+
 FLOAT = ([0-9]+\.[0-9]*)
-COMP  = (<|<=|=|>=|>)
+COMP  = (<|<=|=|>=|>|!=)
 ADD   = (\+|\-)
 MULT  = (\*|/|mod)
 STR   = '[^'\n]*'
