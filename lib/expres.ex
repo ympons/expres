@@ -1,11 +1,11 @@
-defmodule Expr do
+defmodule Expres do
   def tokenize(str) do
-    {:ok, tokens, _} = str |> to_char_list |> :expr_lexer.string
+    {:ok, tokens, _} = str |> to_char_list |> :expres_lexer.string
     tokens
   end
 
   def parse(tokens) when is_list(tokens) do
-    {:ok, tree} = :expr_parser.parse(tokens)
+    {:ok, tree} = :expres_parser.parse(tokens)
     tree 
   end
   def parse(str), do: tokenize(str) |> parse

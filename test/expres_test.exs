@@ -1,23 +1,23 @@
-defmodule ExprTest do
+defmodule ExpresTest do
   use ExUnit.Case
-  doctest Expr
+  doctest Expres
 
   test "tokenize an expression" do
     str = "a = 22"
     exp = [{:var, 1, :a}, {:comp_op, 1, :=}, {:int, 1, 22}] 
-    assert exp == Expr.tokenize(str)
+    assert exp == Expres.tokenize(str)
   end
 
   test "tokenize a string expression" do
     str = "a = 'Yaismel'"
     exp = [{:var, 1, :a}, {:comp_op, 1, :=}, {:string, 1, 'Yaismel'}] 
-    assert exp == Expr.tokenize(str)
+    assert exp == Expres.tokenize(str)
   end
 
   test "tokenize an expression with float" do
     str = "a = 0.5"
     exp = [{:var, 1, :a}, {:comp_op, 1, :=}, {:float, 1, 0.5}] 
-    assert exp == Expr.tokenize(str)
+    assert exp == Expres.tokenize(str)
   end
 
   test "tokenize an expression with module operator" do
@@ -29,13 +29,13 @@ defmodule ExprTest do
       {:comp_op, 1, :=},
       {:int, 1, 22}
     ] 
-    assert exp == Expr.tokenize(str)
+    assert exp == Expres.tokenize(str)
   end
 
   test "check variables after tokenize" do
     props = %{}
     value = "a = 22" 
-      |> Expr.tokenize
+      |> Expres.tokenize
       |> Enum.any?(&elem(&1, 0) == :var && !Map.has_key?(props, elem(&1, 2)))
     assert value
   end
@@ -45,7 +45,7 @@ defmodule ExprTest do
     exp = {:binary_expr, {:comp_op, :=}, 
             {:var, :a}, 
             {:int, 22}}
-    assert exp == Expr.parse(str)
+    assert exp == Expres.parse(str)
   end
 
   test "parse another expression" do
@@ -57,29 +57,29 @@ defmodule ExprTest do
                 {:int, 5}}, 
               {:binary_expr, :in_op, {:var, :b}, [5, 11]}}, 
             {:binary_expr, :not_in_op, {:var, :c}, [3, 4]}}
-    assert exp == Expr.parse(str)
+    assert exp == Expres.parse(str)
   end
 
   test "parse an expression with in_op and sum" do
     str = "a + 1 in (3, 1, 2)"
     exp = {:binary_expr, :in_op, 
             {:binary_expr, {:add_op, :+}, {:var, :a}, {:int, 1}}, [3, 1, 2]}
-    assert exp == Expr.parse(str)
+    assert exp == Expres.parse(str)
   end
 
   test "evaluate an expression" do
     str = "1 + 1 <= a"
-    assert str |> Expr.evaluate(%{a: 2}) 
+    assert str |> Expres.evaluate(%{a: 2}) 
   end
 
   test "evaluate an expression with in_op and sum" do
     str = "a + 2 in (3, 1)"
-    assert str |> Expr.evaluate(%{a: 1})
+    assert str |> Expres.evaluate(%{a: 1})
   end
 
   test "evaluate an expression with not_in_op and sum" do
     str = "10 + 2 not in (3, 1)"
-    assert str |> Expr.evaluate
+    assert str |> Expres.evaluate
   end
 
 end

@@ -36,6 +36,5 @@ element -> float : unwrap2('$1').
 
 Erlang code.
 
-unwrap({_,_,V}) -> V.
 unwrap1({_,V}) -> V.
 unwrap2({T,_,V}) -> {T, V}.
