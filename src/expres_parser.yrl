@@ -1,6 +1,6 @@
 Nonterminals expression predicate scalar_exp elements element.
 
-Terminals atom var int float string multi_op add_op and_op or_op in_op not_op comp_op '(' ')' ',' true false.
+Terminals atom var int float string mult_op add_op and_op or_op in_op not_op comp_op '(' ')' ',' true false.
 
 Rootsymbol expression.
 Left 100 or_op.
@@ -8,7 +8,7 @@ Left 200 and_op.
 Left 300 comp_op.
 Left 400 in_op.
 Left 500 add_op.
-Left 600 multi_op.
+Left 600 mult_op.
 Nonassoc 700 not_op.
 
 expression -> true : true.
@@ -24,7 +24,7 @@ predicate -> scalar_exp in_op '(' elements ')' : {binary_expr, in_op, '$1', '$4'
 predicate -> scalar_exp not_op in_op '(' elements ')' : {binary_expr, not_in_op, '$1', '$5'}.
 
 scalar_exp -> scalar_exp add_op scalar_exp : {binary_expr, unwrap2('$2'), '$1', '$3'}.
-scalar_exp -> scalar_exp multi_op scalar_exp: {binary_expr, unwrap2('$2'), '$1', '$3'}.
+scalar_exp -> scalar_exp mult_op scalar_exp: {binary_expr, unwrap2('$2'), '$1', '$3'}.
 scalar_exp -> element : '$1'.
 
 elements -> element : [unwrap1('$1')].
