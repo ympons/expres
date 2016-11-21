@@ -1,6 +1,6 @@
 Nonterminals expression predicate scalar_exp elements element.
 
-Terminals atom var int float string multi_op add_op and_op or_op in_op not_op comp_op '(' ')' ','.
+Terminals atom var int float string multi_op add_op and_op or_op in_op not_op comp_op '(' ')' ',' true false.
 
 Rootsymbol expression.
 Left 100 or_op.
@@ -11,6 +11,8 @@ Left 500 add_op.
 Left 600 multi_op.
 Nonassoc 700 not_op.
 
+expression -> true : true.
+expression -> false : false.
 expression -> predicate : '$1'.
 expression -> expression or_op expression   : {binary_expr, or_op, '$1', '$3'}.
 expression -> expression and_op expression  : {binary_expr, and_op, '$1', '$3'}.

@@ -11,6 +11,8 @@ WS    = ([\000-\s]|%.*)
 
 Rules.
 
+false   : {token, {false,   TokenLine}}.
+true    : {token, {true,    TokenLine}}.
 in      : {token, {in_op,   TokenLine, list_to_atom(TokenChars)}}.
 or      : {token, {or_op,   TokenLine, list_to_atom(TokenChars)}}.
 and     : {token, {and_op,  TokenLine, list_to_atom(TokenChars)}}.

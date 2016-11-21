@@ -33,6 +33,7 @@ defmodule Expres do
   def unused_vars(str, props), do: str |> tokenize |> unused_vars(props)
 
   defp eval({:int, value}, _), do: value
+  defp eval(boolean, _) when boolean in [true, false], do: boolean
   defp eval({:var, variable}, props) do
     case Map.has_key?(props, variable) do
       false -> variable

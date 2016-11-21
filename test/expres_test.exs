@@ -67,6 +67,16 @@ defmodule ExpresTest do
     assert exp == Expres.parse(str)
   end
 
+  test "parse boolean expression" do
+    str = "true and 1 + 1 = 2"
+    exp = {:binary_expr, :and_op,
+            true,
+            {:binary_expr, {:comp_op, :=},
+              {:binary_expr, {:add_op, :+}, {:int, 1}, {:int, 1}},
+              {:int, 2}}}
+    assert exp == Expres.parse(str)
+  end
+
   test "evaluate an expression" do
     str = "1 + 1 <= a"
     assert str |> Expres.evaluate(%{a: 2}) 
