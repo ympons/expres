@@ -10,7 +10,7 @@ From [Hex](https://hex.pm/packages/expres), the package can be installed as:
 
     ```elixir
     def deps do
-      [{:expres, "~> 0.2.2"}]
+      [{:expres, "~> 0.2.3"}]
     end
     ```
 
