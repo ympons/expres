@@ -10,7 +10,7 @@ From [Hex](https://hex.pm/packages/expres), the package can be installed as:
 
     ```elixir
     def deps do
-      [{:expres, "~> 0.2.3"}]
+      [{:expres, "~> 0.2.4"}]
     end
     ```
 
@@ -24,6 +24,6 @@ Parses and evaluates the provided expression. The variables can be supplied as a
 
 eg.
 ```
-iex> Expres.evaluate("a + 2 in (3, 1)", %{a: 1})
+iex> Expres.evaluate("a + 2 in (3, 1)", %{"a" => 1})
 iex> true
 ```
