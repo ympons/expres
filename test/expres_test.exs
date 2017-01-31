@@ -10,7 +10,7 @@ defmodule ExpresTest do
 
   test "tokenize a string expression" do
     str = "a = 'Yaismel'"
-    exp = [{:var, 1, "a"}, {:comp_op, 1, :=}, {:string, 1, 'Yaismel'}] 
+    exp = [{:var, 1, "a"}, {:comp_op, 1, :=}, {:string, 1, "Yaismel"}] 
     assert exp == Expres.tokenize(str)
   end
 

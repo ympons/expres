@@ -21,7 +21,7 @@ not     : {token, {not_op,  TokenLine, list_to_atom(TokenChars)}}.
 {ADD}   : {token, {add_op,  TokenLine, list_to_atom(TokenChars)}}.
 {MULT}  : {token, {mult_op, TokenLine, list_to_atom(TokenChars)}}.
 {VAR}   : {token, {var,     TokenLine, list_to_binary(TokenChars)}}.
-{STR}   : {token, {string,  TokenLine, strip(TokenChars, TokenLen)}}.
+{STR}   : {token, {string,  TokenLine, list_to_binary(strip(TokenChars, TokenLen))}}.
 {INT}   : {token, {int,     TokenLine, list_to_integer(TokenChars)}}.
 {FLOAT} : {token, {float,   TokenLine, list_to_float(TokenChars)}}.
 [(),]   : {token, {list_to_atom(TokenChars), TokenLine}}.
