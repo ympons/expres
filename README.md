@@ -1,4 +1,4 @@
-# Expres
+# Expres. [Deprecated] Please use the [expreso](https://github.com/ympons/expreso) lib instead
 
 An Elixir library for parsing and evaluating SQL WHERE expressions 
 
